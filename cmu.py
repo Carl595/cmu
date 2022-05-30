@@ -20,6 +20,8 @@ Line(285,40,295,30)
 app.screen = Label('',280,105) 
 app.screen.right = 290
 
+app.his = Label('',280,90)
+
 for row in range(app.rows):
     for col in range(app.cols):
         centerX = 125 + col * 50
@@ -31,35 +33,48 @@ for row in range(app.rows):
         else:
             color='white'
         app.dots[row][col] = Circle(centerX, centerY, 20,fill=color)
-        sele = Circle(50, 100, 15, fill='red', visible=False)
         app.button[row][col] = Label(app.stuff[app.index],centerX,centerY)
         
         app.index += 1
          
 def onMousePress(mouseX, mouseY):
-    flag=False
     for row in range(app.rows):
         for col in range(app.cols):
             dot = app.dots[row][col]
-            if (dot.contains(mouseX, mouseY) == True):
-                flag=True
-                sele.centerX = dot.centerX
-                sele.centerY = dot.centerY
-                sele.visible = True
+            if (dot.contains(mouseX, mouseY) == True): 
                 
                 try:
-                    if float(app.button[row][col].value) >=0:
+                    if float(app.button[row][col].value) >=0 and len(app.screen.value) <= 24:
                         app.screen.value = str(app.screen.value) + str(app.button[row][col].value)
                 except:
-                    if app.button[row][col].value == '.':
+                    if app.button[row][col].value == '.' and app.screen.value !='':
                         app.screen.value += (app.button[row][col].value)
-                    if app.button[row][col].value == '+/-':
+                    if app.button[row][col].value == '+/-' and app.screen.value !='':
                         if str(app.screen.value).find('.') > 0:
                             app.screen.value = -float(app.screen.value)
                         elif str(app.screen.value).find('.') < 0:
                             app.screen.value = -int(app.screen.value)
-
-                    if app.button[row][col].value == '+' and app.val1 != '':
+                    if app.button[row][col].value == '+' and app.val1 != '' and app.action != '' and app.screen.value !='':
+                        if str(app.screen.value).find('.') > 0:
+                            app.screen.value = float(app.screen.value)
+                        elif str(app.screen.value).find('.') < 0:
+                            app.screen.value = int(app.screen.value)
+                        if str(app.val1).find('.') > 0:
+                            app.val1 = float(app.val1)
+                        elif str(app.val1).find('.') < 0:
+                            app.val1 = int(app.val1)
+                        if app.action == '+':
+                            app.val1 = app.val1 + app.screen.value
+                        if app.action == '-':
+                            app.val1 = app.val1 - app.screen.value
+                        if app.action == '/':
+                            app.val1 = app.val1 / app.screen.value
+                        if app.action == 'x':
+                            app.val1 =  app.val1 * app.screen.value
+                    
+                        app.screen.value = ''
+                        app.action = '+'
+                    elif app.button[row][col].value == '+' and app.val1 != '' and app.screen.value !='':
                         if str(app.screen.value).find('.') > 0:
                             app.screen.value = float(app.screen.value)
                         elif str(app.screen.value).find('.') < 0:
@@ -71,11 +86,33 @@ def onMousePress(mouseX, mouseY):
                         app.val1 = app.val1 + app.screen.value
                         app.screen.value = ''
                         app.action = '+'
-                    elif app.button[row][col].value == '+':
+                    elif app.button[row][col].value == '+' and app.screen.value !='':
                         app.val1 = app.screen.value
                         app.screen.value = ''
                         app.action = '+'
-                    if app.button[row][col].value == '-' and app.val1 != '':
+                    elif app.button[row][col].value == '+' and app.screen.value == '':
+                        app.action = '+'
+                    if app.button[row][col].value == '-' and app.val1 != '' and app.action != '' and app.screen.value !='':
+                        if str(app.screen.value).find('.') > 0:
+                            app.screen.value = float(app.screen.value)
+                        elif str(app.screen.value).find('.') < 0:
+                            app.screen.value = int(app.screen.value)
+                        if str(app.val1).find('.') > 0:
+                            app.val1 = float(app.val1)
+                        elif str(app.val1).find('.') < 0:
+                            app.val1 = int(app.val1)
+                        if app.action == '+':
+                            app.val1 = app.val1 + app.screen.value
+                        if app.action == '-':
+                            app.val1 = app.val1 - app.screen.value
+                        if app.action == '/':
+                            app.val1 = app.val1 / app.screen.value
+                        if app.action == 'x':
+                            app.val1 =  app.val1 * app.screen.value
+                    
+                        app.screen.value = ''
+                        app.action = '-'
+                    elif app.button[row][col].value == '-' and app.val1 != '' and app.screen.value !='':
                         if str(app.screen.value).find('.') > 0:
                             app.screen.value = float(app.screen.value)
                         elif str(app.screen.value).find('.') < 0:
@@ -87,11 +124,33 @@ def onMousePress(mouseX, mouseY):
                         app.val1 = app.val1 - app.screen.value
                         app.screen.value = ''
                         app.action = '-'
-                    elif app.button[row][col].value == '-':
+                    elif app.button[row][col].value == '-' and app.screen.value !='':
                         app.val1 = app.screen.value
                         app.screen.value = ''
                         app.action = '-'
-                    if app.button[row][col].value == 'x' and app.val1 != '':
+                    elif app.button[row][col].value == '-' and app.screen.value == '':
+                        app.action = '-'
+                    if app.button[row][col].value == 'x' and app.val1 != '' and app.action != '' and app.screen.value !='':
+                        if str(app.screen.value).find('.') > 0:
+                            app.screen.value = float(app.screen.value)
+                        elif str(app.screen.value).find('.') < 0:
+                            app.screen.value = int(app.screen.value)
+                        if str(app.val1).find('.') > 0:
+                            app.val1 = float(app.val1)
+                        elif str(app.val1).find('.') < 0:
+                            app.val1 = int(app.val1)
+                        if app.action == '+':
+                            app.val1 = app.val1 + app.screen.value
+                        if app.action == '-':
+                            app.val1 = app.val1 - app.screen.value
+                        if app.action == '/':
+                            app.val1 = app.val1 / app.screen.value
+                        if app.action == 'x':
+                            app.val1 =  app.val1 * app.screen.value
+                    
+                        app.screen.value = ''
+                        app.action = 'x'
+                    elif app.button[row][col].value == 'x' and app.val1 != '' and app.screen.value !='':
                         if str(app.screen.value).find('.') > 0:
                             app.screen.value = float(app.screen.value)
                         elif str(app.screen.value).find('.') < 0:
@@ -103,11 +162,33 @@ def onMousePress(mouseX, mouseY):
                         app.val1 = app.val1 * app.screen.value
                         app.screen.value = ''
                         app.action = 'x'
-                    elif app.button[row][col].value == 'x':
+                    elif app.button[row][col].value == 'x' and app.screen.value !='':
                         app.val1 = app.screen.value
                         app.screen.value = ''
                         app.action = 'x'
-                    if app.button[row][col].value == '/' and app.val1 != '':
+                    elif app.button[row][col].value == 'x' and app.screen.value == '':
+                        app.action = 'x'
+                    if app.button[row][col].value == '/' and app.val1 != '' and app.action != '' and app.screen.value !='':
+                        if str(app.screen.value).find('.') > 0:
+                            app.screen.value = float(app.screen.value)
+                        elif str(app.screen.value).find('.') < 0:
+                            app.screen.value = int(app.screen.value)
+                        if str(app.val1).find('.') > 0:
+                            app.val1 = float(app.val1)
+                        elif str(app.val1).find('.') < 0:
+                            app.val1 = int(app.val1)
+                        if app.action == '+':
+                            app.val1 = app.val1 + app.screen.value
+                        if app.action == '-':
+                            app.val1 = app.val1 - app.screen.value
+                        if app.action == '/':
+                            app.val1 = app.val1 / app.screen.value
+                        if app.action == 'x':
+                            app.val1 =  app.val1 * app.screen.value
+                    
+                        app.screen.value = ''
+                        app.action = '/'
+                    elif app.button[row][col].value == '/' and app.val1 != '' and app.screen.value !='':
                         if str(app.screen.value).find('.') > 0:
                             app.screen.value = float(app.screen.value)
                         elif str(app.screen.value).find('.') < 0:
@@ -119,16 +200,28 @@ def onMousePress(mouseX, mouseY):
                         app.val1 = app.val1 / app.screen.value
                         app.screen.value = ''
                         app.action = '/'
-                    elif app.button[row][col].value == '/':
+                    elif app.button[row][col].value == '/' and app.screen.value !='':
                         app.val1 = app.screen.value
                         app.screen.value = ''
                         app.action = '/'
+                    elif app.button[row][col].value == '/' and app.screen.value == '':
+                        app.action = '/'
+                    if app.button[row][col].value == '%' and app.screen.value !='':
+                        if str(app.screen.value).find('.') > 0:
+                            app.screen.value = float(app.screen.value)
+                        elif str(app.screen.value).find('.') < 0:
+                            app.screen.value = int(app.screen.value)
+                        app.screen.value = app.screen.value / 100
+                        
+                        
+                    
                     if app.button[row][col].value == 'C':
                         app.val1 = ''
                         app.screen.value = ''
                         app.action = ''
+                    
 
-                    if app.button[row][col].value == '=':
+                    if app.button[row][col].value == '=' and app.screen.value !='' and app.val1 !='':
                         if str(app.screen.value).find('.') > 0:
                             app.screen.value = float(app.screen.value)
                         elif str(app.screen.value).find('.') < 0:
@@ -152,8 +245,10 @@ def onMousePress(mouseX, mouseY):
                         if app.action == 'x':
                             app.screen.value = app.val1 * app.screen.value
                             app.val1 = ''
-                app.screen.right = 290         
-    if flag != True: 
-        sele.visible = False
+                app.screen.right = 290   
+                app.his.value = app.val1   
+                app.his.right = 290   
+    
+        
 
 cmu_graphics.run()
