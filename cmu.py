@@ -1,7 +1,7 @@
 from cmu_graphics import *
 
 app.background='royalblue'
-app.rows = 55
+app.rows = 5
 app.cols = 4
 app.dots = makeList(app.rows, app.cols)
 app.button = makeList(app.rows, app.cols)
