@@ -1,7 +1,6 @@
 from cmu_graphics import *
 
 
-
 app.rows = 5
 app.cols = 4
 app.dots = makeList(app.rows, app.cols)
