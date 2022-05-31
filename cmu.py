@@ -168,50 +168,55 @@ def onMousePress(mouseX, mouseY):
                         app.action = 'x'
                     elif app.button[row][col].value == 'x' and app.screen.value == '':
                         app.action = 'x'
-                    if app.button[row][col].value == '/' and app.val1 != '' and app.action != '' and app.screen.value !='':
-                        if str(app.screen.value).find('.') > 0:
-                            app.screen.value = float(app.screen.value)
-                        elif str(app.screen.value).find('.') < 0:
-                            app.screen.value = int(app.screen.value)
-                        if str(app.val1).find('.') > 0:
-                            app.val1 = float(app.val1)
-                        elif str(app.val1).find('.') < 0:
-                            app.val1 = int(app.val1)
-                        if app.action == '+':
-                            app.val1 = app.val1 + app.screen.value
-                        if app.action == '-':
-                            app.val1 = app.val1 - app.screen.value
-                        if app.action == '/':
+
+                    try:    
+                        if app.button[row][col].value == '/' and app.val1 != '' and app.action != '' and app.screen.value !='':
+                            if str(app.screen.value).find('.') > 0:
+                                app.screen.value = float(app.screen.value)
+                            elif str(app.screen.value).find('.') < 0:
+                                app.screen.value = int(app.screen.value)
+                            if str(app.val1).find('.') > 0:
+                                app.val1 = float(app.val1)
+                            elif str(app.val1).find('.') < 0:
+                                app.val1 = int(app.val1)
+                            if app.action == '+':
+                                app.val1 = app.val1 + app.screen.value
+                            if app.action == '-':
+                                app.val1 = app.val1 - app.screen.value
+                            if app.action == '/':
+                                app.val1 = app.val1 / app.screen.value
+                            if app.action == 'x':
+                                app.val1 =  app.val1 * app.screen.value
+                        
+                            app.screen.value = ''
+                            app.action = '/'
+                        elif app.button[row][col].value == '/' and app.val1 != '' and app.screen.value !='':
+                            if str(app.screen.value).find('.') > 0:
+                                app.screen.value = float(app.screen.value)
+                            elif str(app.screen.value).find('.') < 0:
+                                app.screen.value = int(app.screen.value)
+                            if str(app.val1).find('.') > 0:
+                                app.val1 = float(app.val1)
+                            elif str(app.val1).find('.') < 0:
+                                app.val1 = int(app.val1)
                             app.val1 = app.val1 / app.screen.value
-                        if app.action == 'x':
-                            app.val1 =  app.val1 * app.screen.value
-                    
-                        app.screen.value = ''
-                        app.action = '/'
-                    elif app.button[row][col].value == '/' and app.val1 != '' and app.screen.value !='':
-                        if str(app.screen.value).find('.') > 0:
-                            app.screen.value = float(app.screen.value)
-                        elif str(app.screen.value).find('.') < 0:
-                            app.screen.value = int(app.screen.value)
-                        if str(app.val1).find('.') > 0:
-                            app.val1 = float(app.val1)
-                        elif str(app.val1).find('.') < 0:
-                            app.val1 = int(app.val1)
-                        app.val1 = app.val1 / app.screen.value
-                        app.screen.value = ''
-                        app.action = '/'
-                    elif app.button[row][col].value == '/' and app.screen.value !='':
-                        app.val1 = app.screen.value
-                        app.screen.value = ''
-                        app.action = '/'
-                    elif app.button[row][col].value == '/' and app.screen.value == '':
-                        app.action = '/'
-                    if app.button[row][col].value == '%' and app.screen.value !='':
-                        if str(app.screen.value).find('.') > 0:
-                            app.screen.value = float(app.screen.value)
-                        elif str(app.screen.value).find('.') < 0:
-                            app.screen.value = int(app.screen.value)
-                        app.screen.value = app.screen.value / 100
+                            app.screen.value = ''
+                            app.action = '/'
+                        elif app.button[row][col].value == '/' and app.screen.value !='':
+                            app.val1 = app.screen.value
+                            app.screen.value = ''
+                            app.action = '/'
+                        elif app.button[row][col].value == '/' and app.screen.value == '':
+                            app.action = '/'
+                        if app.button[row][col].value == '%' and app.screen.value !='':
+                            if str(app.screen.value).find('.') > 0:
+                                app.screen.value = float(app.screen.value)
+                            elif str(app.screen.value).find('.') < 0:
+                                app.screen.value = int(app.screen.value)
+                            app.screen.value = app.screen.value / 100
+                    except:
+                        app.screen.value = 'error'
+                        app.val1 = ''
                         
                         
                     
@@ -239,8 +244,12 @@ def onMousePress(mouseX, mouseY):
                         if app.action == '-':
                             app.screen.value = app.val1 - app.screen.value
                             app.val1 = ''
-                        if app.action == '/':
-                            app.screen.value = app.val1 / app.screen.value
+                        try:
+                            if app.action == '/':
+                                app.screen.value = app.val1 / app.screen.value
+                                app.val1 = ''
+                        except:
+                            app.screen.value = 'error'
                             app.val1 = ''
                         if app.action == 'x':
                             app.screen.value = app.val1 * app.screen.value
