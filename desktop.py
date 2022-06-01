@@ -22,7 +22,7 @@ chrome = Group(c1, c2, c3, c4, c5)
 ###SETTINGS
 obstacles = Group()
 app.chromerunning = False
-app.dy = 6
+app.dy = 4
 app.speed = 0
 app.jump = -30
 app.stepsPerSecond = 60
