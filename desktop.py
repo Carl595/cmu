@@ -1,4 +1,6 @@
 from cmu_graphics import *
+from cmu import *
+
 ###WINDOWS
 app.background = gradient('lightblue', 'royalblue', start = 'bottom-left')
 
@@ -8,7 +10,6 @@ blue = Rect(140, 205, 55, 55, fill = gradient('white', 'skyblue', 'deepskyblue',
 yellow = Rect(205, 205, 55, 55, fill = gradient('white', 'palegoldenrod', 'yellow', start = 'top-left'))
 
 windowslogo = Group(red, green, blue, yellow)
-
 
 ###APPS
 #####CHROME
@@ -186,7 +187,7 @@ app.obstaclestart = obstacles.centerX
 
 
 ###MOUSEPRESS
-def onMousePress(mouseX, mouseY):
+def onMouseRelease(mouseX, mouseY):
     if search1.contains(mouseX, mouseY) and topchrome.visible == True or search2.contains(mouseX, mouseY) and topchrome.visible == True:
         middlechrome.visible = False
         topchrome.visible = False
@@ -217,10 +218,8 @@ def onMousePress(mouseX, mouseY):
         error.toFront()
         
     if calculatoricon.hits(mouseX, mouseY) and calculatoricon.visible == True:
-        errtitle.value = 'Calculator'
-        errmsg.value = 'Calculator has stopped working'
-        error.visible = True
-        error.toFront()
+        calculator.visible = True
+        calculator.toFront()
         
     if steam.hits(mouseX, mouseY) and steam.visible == True:
         cleardesktop()

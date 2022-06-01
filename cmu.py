@@ -26,7 +26,7 @@ Line(285,30,295,40),
 Line(285,40,295,30),
 )
 calculator.add(app.screen,app.his,close)
-calculator.visible = True
+calculator.visible = False
 
 
 for row in range(app.rows):
@@ -269,7 +269,3 @@ def onMousePress(mouseX, mouseY):
                     app.screen.right = 290   
                     app.his.value = app.val1   
                     app.his.right = 290   
-    
-        
-
-cmu_graphics.run()
