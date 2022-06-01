@@ -1,6 +1,6 @@
 from cmu_graphics import *
 from cmu import *
-#test
+
 ###WINDOWS
 app.background = gradient('lightblue', 'royalblue', start = 'bottom-left')
 
