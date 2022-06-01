@@ -22,10 +22,9 @@ calculator = Group(
 Rect(100,25,200,345,fill='darkgray'),
 Rect(105,50,190,70,border='black',fill='white'),
 Label('Calculator',130,35),
-Line(285,30,295,40),
-Line(285,40,295,30),
 )
-calculator.add(app.screen,app.his,close)
+calculator.add(app.screen,app.his,close,Line(285,30,295,40),
+Line(285,40,295,30))
 calculator.visible = False
 
 
