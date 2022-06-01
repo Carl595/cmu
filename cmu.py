@@ -22,8 +22,12 @@ Rect(100,25,200,345,fill='darkgray'),
 Rect(105,50,190,70,border='black',fill='white'),
 Label('Calculator',130,35),
 )
+<<<<<<< HEAD
 calculator.add(app.screen,app.his,close,Line(285,30,295,40),
 Line(285,40,295,30))
+=======
+calculator.add(app.screen,app.his,close)
+>>>>>>> 0a9245198f8c3601e2175b62d1e87bddc3664001
 calculator.visible = False
 
 
