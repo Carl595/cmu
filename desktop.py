@@ -89,6 +89,15 @@ st7 = Line(195, 205, 185, 202, fill = 'white', lineWidth = 3)
 
 steam = Group(st1, st2, st3, st4, st5, st6, st7)
 
+###CALCULATOR
+calc1 = Rect(200, 14, 25, 30, fill = 'white')
+calc2 = Rect(201, 15, 23, 6, fill = 'orange')
+calc3 = Line(203.4, 24, 223, 24, lineWidth = 1, dashes = (4, 3))
+calc4 = Line(203.4, 29, 223, 29, lineWidth = 1, dashes = (4, 3))
+calc5 = Line(203.4, 34, 223, 34, lineWidth = 1, dashes = (4, 3))
+calc6 = Line(203.4, 39, 223, 39, lineWidth = 1, dashes = (4, 3))
+calculatoricon = Group(calc1, calc2, calc3, calc4, calc5, calc6)
+
 #NOTEPAD
 n1 = Rect(200, 200, 25, 30, fill = 'white')
 n1.centerX = 200
@@ -158,6 +167,7 @@ app.game3playing = False
 
 #####FUNCTIONS
 def appsetting(boolean):
+    calculatoricon.visible = boolean
     spotify.visible = boolean
     steam.visible = boolean
     notepad.visible = boolean
@@ -203,6 +213,12 @@ def onMousePress(mouseX, mouseY):
     if spotify.hits(mouseX, mouseY) and spotify.visible == True:
         errtitle.value = 'Spotify'
         errmsg.value = 'Spotify has stopped working'
+        error.visible = True
+        error.toFront()
+        
+    if calculatoricon.hits(mouseX, mouseY) and calculatoricon.visible == True:
+        errtitle.value = 'Calculator'
+        errmsg.value = 'Calculator has stopped working'
         error.visible = True
         error.toFront()
         
@@ -447,5 +463,4 @@ def onStep():
             
         if app.steps % 10 == 0:
             score.value += 1
-
 cmu_graphics.run() 
