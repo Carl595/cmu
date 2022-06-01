@@ -1,5 +1,4 @@
 from cmu_graphics import *
-#test
 
 app.rows = 5
 app.cols = 4
