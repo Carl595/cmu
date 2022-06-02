@@ -23,9 +23,9 @@ chrome = Group(c1, c2, c3, c4, c5)
 ###SETTINGS
 obstacles = Group()
 app.chromerunning = False
-app.dy = 4
+app.dy = 3
 app.speed = 0
-app.jump = -30
+app.jump = -25
 app.stepsPerSecond = 60
 app.steps = 0
 
@@ -176,13 +176,16 @@ def appsetting(boolean):
     
 def getRandomHeight():
     heightindex = randrange(0, 3)
-    heights = [290, 280, 270]
+    heights = [270, 260, 250]
     height = heights[heightindex]
     return height
 
-for x in range(1000, 10000, 200):
+
+
+
+for x in range(1000, 10000, 300):
     height = getRandomHeight()
-    obstacles.add(Rect(x, height, 25, 30))
+    obstacles.add(Rect(x, height, 35, 50))
 app.obstaclestart = obstacles.centerX
 
 
